@@ -1,6 +1,7 @@
 import pygame
 import sys
 from game import Game
+import time
 
 pygame.init()
 main_clock = pygame.time.Clock()
@@ -13,6 +14,10 @@ oj_button = pygame.image.load("Oj.png")
 gameBG = pygame.image.load("gameBG3.jpg")
 gameBG = pygame.transform.scale(gameBG, (width, height))
 treeButton = pygame.image.load("tree2nobg.png")
+shopButton = pygame.image.load("shopIcon.png")
+shopButton = pygame.transform.scale(shopButton, (50, 50))
+shopBorder = pygame.image.load("shopBorder.png")
+shopBorder = pygame.transform.scale(shopBorder, (width, height))
 game= Game()
 game.run()
 
@@ -81,6 +86,12 @@ def play():
         PRESENTS_TEXT_RECT.center = (width/2, 100)
         SCREEN.blit(PRESENTS_TEXT, PRESENTS_TEXT_RECT)
 
+        #shop button
+        shopButton_rect = shopButton.get_rect()
+        shopButton_rect.center = (1200, 100)
+        SCREEN.blit(shopButton, shopButton_rect)
+        
+
         
         
         for event in pygame.event.get():
@@ -90,8 +101,7 @@ def play():
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if treeButton_rect.collidepoint(pygame.mouse.get_pos()):
                     game.clicked_tree()
-            elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_ESCAPE:
+                if shopButton_rect.collidepoint(pygame.mouse.get_pos()):
                     shop()
                 
         
@@ -104,14 +114,133 @@ def shop():
     
     pygame.display.set_caption("Shop")
     while True:
-        
-        
+        pygame.draw.rect(SCREEN, (150, 0, 20), (175, 70, 950, 550))
+        SCREEN.blit(shopBorder, (0, 0))
+
+
+        ELF_TEXT = pygame.font.Font("freesansbold.ttf", 40)
+        ELF_TEXT = ELF_TEXT.render(f"Elves: {str(game.get_elves())}", True, "white")
+        ELF_TEXT_RECT = ELF_TEXT.get_rect()
+        ELF_TEXT_RECT.center = (400, 200)
+        SCREEN.blit(ELF_TEXT, ELF_TEXT_RECT)
+        BUY_ELF_TEXT = pygame.font.Font("freesansbold.ttf", 20)
+        BUY_ELF_TEXT = BUY_ELF_TEXT.render(f"Buy Elf", True, "white")
+        BUY_ELF_TEXT_RECT = BUY_ELF_TEXT.get_rect()
+        BUY_ELF_TEXT_RECT.center = (400, 250)
+        SCREEN.blit(BUY_ELF_TEXT, BUY_ELF_TEXT_RECT)
+    
+
+        SANTA_TEXT = pygame.font.Font("freesansbold.ttf", 40)
+        SANTA_TEXT = SANTA_TEXT.render(f"Santa: {str(game.get_santas())}", True, "white")
+        SANTA_TEXT_RECT = SANTA_TEXT.get_rect()
+        SANTA_TEXT_RECT.center = (400, 300)
+        SCREEN.blit(SANTA_TEXT, SANTA_TEXT_RECT)
+        BUT_SANTA_TEXT = pygame.font.Font("freesansbold.ttf", 20)
+        BUT_SANTA_TEXT = BUT_SANTA_TEXT.render(f"Buy Santa", True, "white")
+        BUT_SANTA_TEXT_RECT = BUT_SANTA_TEXT.get_rect()
+        BUT_SANTA_TEXT_RECT.center = (400, 350)
+        SCREEN.blit(BUT_SANTA_TEXT, BUT_SANTA_TEXT_RECT)
+
+        REINDEER_TEXT = pygame.font.Font("freesansbold.ttf", 40)
+        REINDEER_TEXT = REINDEER_TEXT.render(f"Reindeer: {str(game.get_reindeers())}", True, "white")
+        REINDEER_TEXT_RECT = REINDEER_TEXT.get_rect()
+        REINDEER_TEXT_RECT.center = (400, 400)
+        SCREEN.blit(REINDEER_TEXT, REINDEER_TEXT_RECT)
+        BUY_REINDEER_TEXT = pygame.font.Font("freesansbold.ttf", 20)
+        BUY_REINDEER_TEXT = BUY_REINDEER_TEXT.render(f"Buy Reindeer", True, "white")
+        BUY_REINDEER_TEXT_RECT = BUY_REINDEER_TEXT.get_rect()
+        BUY_REINDEER_TEXT_RECT.center = (400, 450)
+        SCREEN.blit(BUY_REINDEER_TEXT, BUY_REINDEER_TEXT_RECT)
+
+        SLEIGH_TEXT = pygame.font.Font("freesansbold.ttf", 40)
+        SLEIGH_TEXT = SLEIGH_TEXT.render(f"Sleigh: {str(game.get_sleighs())}", True, "white")
+        SLEIGH_TEXT_RECT = SLEIGH_TEXT.get_rect()
+        SLEIGH_TEXT_RECT.center = (400, 500)
+        SCREEN.blit(SLEIGH_TEXT, SLEIGH_TEXT_RECT)
+        BUY_SLEIGH_TEXT = pygame.font.Font("freesansbold.ttf", 20)
+        BUY_SLEIGH_TEXT = BUY_SLEIGH_TEXT.render(f"Buy Sleigh", True, "white")
+        BUY_SLEIGH_TEXT_RECT = BUY_SLEIGH_TEXT.get_rect()
+        BUY_SLEIGH_TEXT_RECT.center = (400, 550)
+        SCREEN.blit(BUY_SLEIGH_TEXT, BUY_SLEIGH_TEXT_RECT)
+
+        WORKSHOP_TEXT = pygame.font.Font("freesansbold.ttf", 40)
+        WORKSHOP_TEXT = WORKSHOP_TEXT.render(f"Workshop: {str(game.get_workshops())}", True, "white")
+        WORKSHOP_TEXT_RECT = WORKSHOP_TEXT.get_rect()
+        WORKSHOP_TEXT_RECT.center = (800, 200)
+        SCREEN.blit(WORKSHOP_TEXT, WORKSHOP_TEXT_RECT)
+        BUY_WORKSHOP_TEXT = pygame.font.Font("freesansbold.ttf", 20)
+        BUY_WORKSHOP_TEXT = BUY_WORKSHOP_TEXT.render(f"Buy Workshop", True, "white")
+        BUY_WORKSHOP_TEXT_RECT = BUY_WORKSHOP_TEXT.get_rect()
+        BUY_WORKSHOP_TEXT_RECT.center = (800, 250)
+        SCREEN.blit(BUY_WORKSHOP_TEXT, BUY_WORKSHOP_TEXT_RECT)
+
+        FACTORY_TEXT = pygame.font.Font("freesansbold.ttf", 40)
+        FACTORY_TEXT = FACTORY_TEXT.render(f"Factory: {str(game.get_factories())}", True, "white")
+        FACTORY_TEXT_RECT = FACTORY_TEXT.get_rect()
+        FACTORY_TEXT_RECT.center = (800, 300)
+        SCREEN.blit(FACTORY_TEXT, FACTORY_TEXT_RECT)
+        BUY_FACTORY_TEXT = pygame.font.Font("freesansbold.ttf", 20)
+        BUY_FACTORY_TEXT = BUY_FACTORY_TEXT.render(f"Buy Factory", True, "white")
+        BUY_FACTORY_TEXT_RECT = BUY_FACTORY_TEXT.get_rect()
+        BUY_FACTORY_TEXT_RECT.center = (800, 350)
+        SCREEN.blit(BUY_FACTORY_TEXT, BUY_FACTORY_TEXT_RECT)
+
+        PRESENTS_TEXT = pygame.font.Font("freesansbold.ttf", 40)
+        PRESENTS_TEXT = PRESENTS_TEXT.render(f"Presents: {str(game.get_presents())}", True, "white")
+        PRESENTS_TEXT_RECT = PRESENTS_TEXT.get_rect()
+        PRESENTS_TEXT_RECT.center = (800, 500)
+        SCREEN.blit(PRESENTS_TEXT, PRESENTS_TEXT_RECT)
+
+        NOT_ENOUGH_TEXT = pygame.font.Font("freesansbold.ttf", 20)
+        NOT_ENOUGH_TEXT = NOT_ENOUGH_TEXT.render(f"Not enough presents!", True, "white")
+        NOT_ENOUGH_TEXT_RECT = NOT_ENOUGH_TEXT.get_rect()
+
+
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
             elif event.type == pygame.KEYDOWN:
                 play()
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if BUY_ELF_TEXT_RECT.collidepoint(pygame.mouse.get_pos()):
+                    x = game.get_presents()
+                    if x >= 10:
+                        game.buy_elf()
+                    else:
+                        SCREEN.blit(NOT_ENOUGH_TEXT, (700, 400))
+                        
+                if BUT_SANTA_TEXT_RECT.collidepoint(pygame.mouse.get_pos()):
+                    x = game.get_presents()
+                    if x >= 100:
+                        game.buy_santa()
+                    else:
+                        SCREEN.blit(NOT_ENOUGH_TEXT, (700, 400))
+                if BUY_REINDEER_TEXT_RECT.collidepoint(pygame.mouse.get_pos()):
+                    x = game.get_presents()
+                    if x >= 1000:
+                        game.buy_reindeer()
+                    else:
+                        SCREEN.blit(NOT_ENOUGH_TEXT, (700, 400))
+                if BUY_SLEIGH_TEXT_RECT.collidepoint(pygame.mouse.get_pos()):
+                    x = game.get_presents()
+                    if x >= 10000:
+                        game.buy_sleigh()
+                    else:
+                        SCREEN.blit(NOT_ENOUGH_TEXT, (700, 400))
+                if BUY_WORKSHOP_TEXT_RECT.collidepoint(pygame.mouse.get_pos()):
+                    x = game.get_presents()
+                    if x >= 100000:
+                        game.buy_workshop()
+                    else:
+                        SCREEN.blit(NOT_ENOUGH_TEXT, (700, 400))
+                if BUY_FACTORY_TEXT_RECT.collidepoint(pygame.mouse.get_pos()):
+                    x = game.get_presents()
+                    if x >= 1000000:
+                        game.buy_factory()
+                    else:
+                        SCREEN.blit(NOT_ENOUGH_TEXT, (700, 400))
         pygame.display.update()
 
 

@@ -3,10 +3,10 @@ import time
 class Game:
     def __init__(self):
         self.presents = 0
-        self.elves = 102
+        self.elves = 0
         self.santas = 0
         self.reindeers = 0
-        self.sleighs = 1
+        self.sleighs = 0
         self.workshops = 0
         self.factories = 0
 
