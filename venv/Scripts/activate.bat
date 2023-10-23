@@ -8,7 +8,11 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
+<<<<<<< HEAD
 set VIRTUAL_ENV=C:\Users\cstreby144\Desktop\GitHub\GoFish\Tkinter-Project\Halloween-Clicker\venv
+=======
+set VIRTUAL_ENV=C:\Users\gford835\Documents\GitHub\GUI_Project\Halloween-Clicker\venv
+>>>>>>> origin/Grant
 
 if not defined PROMPT set PROMPT=$P$G
 

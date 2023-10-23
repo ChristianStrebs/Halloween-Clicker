@@ -38,7 +38,11 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
+<<<<<<< HEAD
 VIRTUAL_ENV="C:\Users\cstreby144\Desktop\GitHub\GoFish\Tkinter-Project\Halloween-Clicker\venv"
+=======
+VIRTUAL_ENV="C:\Users\gford835\Documents\GitHub\GUI_Project\Halloween-Clicker\venv"
+>>>>>>> origin/Grant
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
