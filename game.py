@@ -3,14 +3,15 @@ import time
 class Game:
     def __init__(self):
         self.presents = 0
-        self.elves = 0
+        self.elves = 102
         self.santas = 0
         self.reindeers = 0
-        self.sleighs = 0
+        self.sleighs = 1
         self.workshops = 0
         self.factories = 0
 
-    def play(self):
+    def run(self):
+        
         self.presents += self.elves
         self.presents += self.santas * 10
         self.presents += self.reindeers * 100
@@ -18,7 +19,8 @@ class Game:
         self.presents += self.workshops * 10000
         self.presents += self.factories * 100000
         time.sleep(1)
-        self.play()
+
+
 
     def buy_elf(self):
         if self.presents >= self.elves + 10:
