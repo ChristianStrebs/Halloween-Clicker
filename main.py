@@ -54,6 +54,9 @@ def play():
     pygame.display.set_caption("Play")
     while True:
         SCREEN.fill("black")
+        oj_button_rect = oj_button.get_rect()
+        oj_button_rect.center = (width/8, height/4)
+        SCREEN.blit(oj_button, oj_button_rect)
         
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
