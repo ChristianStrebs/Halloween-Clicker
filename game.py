@@ -1,6 +1,6 @@
 import time
 
-class game:
+class Game:
     def __init__(self):
         self.presents = 0
         self.elves = 0
