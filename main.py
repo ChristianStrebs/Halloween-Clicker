@@ -40,6 +40,9 @@ def main_menu():
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if oj_button_rect.collidepoint(MENU_MOUSE_POS):
                     play()
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    instructions()
                 
         
         pygame.display.update()
@@ -55,13 +58,20 @@ def play():
     while True:
         SCREEN.fill("black")
         oj_button_rect = oj_button.get_rect()
-        oj_button_rect.center = (width/8, height/4)
+        oj_button_rect.center = (width/2, height/2)
         SCREEN.blit(oj_button, oj_button_rect)
+        GAME_MOUSE_POS = pygame.mouse.get_pos()
         
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if oj_button_rect.collidepoint(GAME_MOUSE_POS):
+                    instructions()
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    instructions()
         
         
         pygame.display.update()
@@ -71,4 +81,13 @@ def play():
 def instructions():
     
     pygame.display.set_caption("Instructions")
+    while True:
+        SCREEN.fill("black")
+        for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
+            
+            
+        pygame.display.update()
 main_menu()
