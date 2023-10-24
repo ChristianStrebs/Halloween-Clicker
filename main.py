@@ -103,13 +103,13 @@ def play():
         #adding presents to the screen for certain presents increments
         if game.get_presents() >= 1000:
             SCREEN.blit(presents1, (300, 550))
-        elif game.get_presents() >= 10000:
+        if game.get_presents() >= 10000:
             SCREEN.blit(presents2, (0, 550))
-        elif game.get_presents() >= 100000:
+        if game.get_presents() >= 100000:
             SCREEN.blit(presents3, (550, 500))
-        elif game.get_presents() >= 1000000:
+        if game.get_presents() >= 1000000:
             SCREEN.blit(presents1, (650, 550))
-        elif game.get_presents() >= 10000000:
+        if game.get_presents() >= 10000000:
             SCREEN.blit(presents3, (800, 500))
         
 
@@ -214,9 +214,23 @@ def shop():
         PRESENTS_TEXT_RECT.center = (800, 500)
         SCREEN.blit(PRESENTS_TEXT, PRESENTS_TEXT_RECT)
 
+        SAVE_CHRISTMAS_TEXT = pygame.font.Font("freesansbold.ttf", 40)
+        SAVE_CHRISTMAS_TEXT = SAVE_CHRISTMAS_TEXT.render(f"Save Christmas!", True, "white")
+        SAVE_CHRISTMAS_TEXT_RECT = SAVE_CHRISTMAS_TEXT.get_rect()
+        SAVE_CHRISTMAS_TEXT_RECT.center = (800, 400)
+        SCREEN.blit(SAVE_CHRISTMAS_TEXT, SAVE_CHRISTMAS_TEXT_RECT)
+        BUY_SAVE_CHRISTMAS_TEXT = pygame.font.Font("freesansbold.ttf", 20)
+        BUY_SAVE_CHRISTMAS_TEXT = BUY_SAVE_CHRISTMAS_TEXT.render(f"Buy Save Christmas!", True, "white")
+        BUY_SAVE_CHRISTMAS_TEXT_RECT = BUY_SAVE_CHRISTMAS_TEXT.get_rect()
+        BUY_SAVE_CHRISTMAS_TEXT_RECT.center = (800, 450)
+        SCREEN.blit(BUY_SAVE_CHRISTMAS_TEXT, BUY_SAVE_CHRISTMAS_TEXT_RECT)
+
+
         NOT_ENOUGH_TEXT = pygame.font.Font("freesansbold.ttf", 20)
         NOT_ENOUGH_TEXT = NOT_ENOUGH_TEXT.render(f"Not enough presents!", True, "white")
+
         NOT_ENOUGH_TEXT_RECT = NOT_ENOUGH_TEXT.get_rect()
+        NOT_ENOUGH_TEXT_RECT.center = (600, 600)
 
 
 
@@ -232,38 +246,38 @@ def shop():
                     if x >= 10:
                         game.buy_elf()
                     else:
-                        SCREEN.blit(NOT_ENOUGH_TEXT, (700, 400))
+                        SCREEN.blit(NOT_ENOUGH_TEXT, (500,850))
                         
                 if BUT_SANTA_TEXT_RECT.collidepoint(pygame.mouse.get_pos()):
                     x = game.get_presents()
                     if x >= 100:
                         game.buy_santa()
                     else:
-                        SCREEN.blit(NOT_ENOUGH_TEXT, (700, 400))
+                        SCREEN.blit(NOT_ENOUGH_TEXT, (500,850))
                 if BUY_REINDEER_TEXT_RECT.collidepoint(pygame.mouse.get_pos()):
                     x = game.get_presents()
                     if x >= 1000:
                         game.buy_reindeer()
                     else:
-                        SCREEN.blit(NOT_ENOUGH_TEXT, (700, 400))
+                        SCREEN.blit(NOT_ENOUGH_TEXT, (500,850))
                 if BUY_SLEIGH_TEXT_RECT.collidepoint(pygame.mouse.get_pos()):
                     x = game.get_presents()
                     if x >= 10000:
                         game.buy_sleigh()
                     else:
-                        SCREEN.blit(NOT_ENOUGH_TEXT, (700, 400))
+                        SCREEN.blit(NOT_ENOUGH_TEXT, (500,850))
                 if BUY_WORKSHOP_TEXT_RECT.collidepoint(pygame.mouse.get_pos()):
                     x = game.get_presents()
                     if x >= 100000:
                         game.buy_workshop()
                     else:
-                        SCREEN.blit(NOT_ENOUGH_TEXT, (700, 400))
+                        SCREEN.blit(NOT_ENOUGH_TEXT, (500,850))
                 if BUY_FACTORY_TEXT_RECT.collidepoint(pygame.mouse.get_pos()):
                     x = game.get_presents()
                     if x >= 1000000:
                         game.buy_factory()
                     else:
-                        SCREEN.blit(NOT_ENOUGH_TEXT, (700, 400))
+                        SCREEN.blit(NOT_ENOUGH_TEXT, (500,850))
         pygame.display.update()
 
 
