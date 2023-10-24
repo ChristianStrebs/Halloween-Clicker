@@ -18,6 +18,12 @@ shopButton = pygame.image.load("shopIcon.png")
 shopButton = pygame.transform.scale(shopButton, (50, 50))
 shopBorder = pygame.image.load("shopBorder.png")
 shopBorder = pygame.transform.scale(shopBorder, (width, height))
+presents1 = pygame.image.load("presents.png")
+presents1 = pygame.transform.scale(presents1, (300, 200))
+presents2 = pygame.image.load("presents2.png")
+presents2 = pygame.transform.scale(presents2, (300, 200))
+presents3 = pygame.image.load("presents4.png")
+presents3 = pygame.transform.scale(presents3, (300, 200))
 game= Game()
 game.run()
 
@@ -65,6 +71,7 @@ def play():
     pygame.display.set_caption("Play")
     
     while True:
+        
         main_clock.tick(600)
         game.run()
         #elf
@@ -73,6 +80,7 @@ def play():
         SCREEN.blit(SCREEN, (300, 100))
 
         
+
         #Tree
         SCREEN.blit(gameBG, (0, 0))
         treeButton_rect = treeButton.get_rect()
@@ -85,11 +93,24 @@ def play():
         PRESENTS_TEXT_RECT = PRESENTS_TEXT.get_rect()
         PRESENTS_TEXT_RECT.center = (width/2, 100)
         SCREEN.blit(PRESENTS_TEXT, PRESENTS_TEXT_RECT)
+        
 
         #shop button
         shopButton_rect = shopButton.get_rect()
         shopButton_rect.center = (1200, 100)
         SCREEN.blit(shopButton, shopButton_rect)
+
+        #adding presents to the screen for certain presents increments
+        if game.get_presents() >= 1000:
+            SCREEN.blit(presents1, (300, 550))
+        elif game.get_presents() >= 10000:
+            SCREEN.blit(presents2, (0, 550))
+        elif game.get_presents() >= 100000:
+            SCREEN.blit(presents3, (550, 500))
+        elif game.get_presents() >= 1000000:
+            SCREEN.blit(presents1, (650, 550))
+        elif game.get_presents() >= 10000000:
+            SCREEN.blit(presents3, (800, 500))
         
 
         
@@ -101,8 +122,10 @@ def play():
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if treeButton_rect.collidepoint(pygame.mouse.get_pos()):
                     game.clicked_tree()
+                    pygame.display.update()
                 if shopButton_rect.collidepoint(pygame.mouse.get_pos()):
                     shop()
+                    pygame.display.update()
                 
         
         
