@@ -12,48 +12,48 @@ class Game:
 
     def run(self):
         
-        self.presents += self.elves
-        self.presents += self.santas * 10
-        self.presents += self.reindeers * 100
-        self.presents += self.sleighs * 1000
-        self.presents += self.workshops * 10000
-        self.presents += self.factories * 100000
-        time.sleep(1)
+        self.presents += self.elves*0.05
+        self.presents += self.santas * 0.1
+        self.presents += self.reindeers * 0.5
+        self.presents += self.sleighs * 5
+        self.presents += self.workshops * 25
+        self.presents += self.factories * 100
+        
 
 
 
     def buy_elf(self):
-        if self.presents >= self.elves + 10:
-            self.presents -= 10
+        if self.presents >= 10 * (self.elves/2 + 1):
+            self.presents -= 10 * (self.elves/2 + 1)
             self.elves += 1
     
     def buy_santa(self):
-        if self.presents >= self.santas + 100:
-            self.presents -= 100
+        if self.presents >= 100 * (self.santas/2 + 1):
+            self.presents -= 100 * (self.santas/2 + 1)
             self.santas += 1
 
     def buy_reindeer(self):
-        if self.presents >= self.reindeers + 1000:
-            self.presents -= 1000
+        if self.presents >= 1000 * (self.reindeers/2 + 1):
+            self.presents -= 1000 * (self.reindeers/2 + 1)
             self.reindeers += 1
 
     def buy_sleigh(self):
-        if self.presents >= self.sleighs + 10000:
-            self.presents -= 10000
+        if self.presents >= 10000 * (self.sleighs/2 + 1):
+            self.presents -= 10000 * (self.sleighs/2 + 1)
             self.sleighs += 1
 
     def buy_workshop(self):
-        if self.presents >= self.workshops + 100000:
-            self.presents -= 100000
+        if self.presents >= 100000 * (self.workshops/2 + 1):
+            self.presents -= 100000 * (self.workshops/2 + 1)
             self.workshops += 1
 
     def buy_factory(self):
-        if self.presents >= self.factories + 1000000:
-            self.presents -= 1000000
+        if self.presents >= 1000000 * (self.factories/2 + 1):
+            self.presents -= 1000000 * (self.factories/2 + 1)
             self.factories += 1
     
     def save_christmas(self):
-        if self.presents >= 1000000000:
+        if self.presents >= 10000000:
             self.presents -= 10000000
             return True
         else:

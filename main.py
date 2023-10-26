@@ -72,7 +72,7 @@ def play():
     
     while True:
         
-        main_clock.tick(600)
+        
         game.run()
         #elf
         elfButton = pygame.Rect(300, 100, 100, 100)
@@ -89,7 +89,7 @@ def play():
         
         #presents text
         PRESENTS_TEXT = pygame.font.Font("freesansbold.ttf", 40)
-        PRESENTS_TEXT = PRESENTS_TEXT.render(f"Presents: {str(game.get_presents())}", True, "white")
+        PRESENTS_TEXT = PRESENTS_TEXT.render(f"Presents: {str(int(game.get_presents()))}", True, "white")
         PRESENTS_TEXT_RECT = PRESENTS_TEXT.get_rect()
         PRESENTS_TEXT_RECT.center = (width/2, 100)
         SCREEN.blit(PRESENTS_TEXT, PRESENTS_TEXT_RECT)
@@ -131,7 +131,28 @@ def play():
         
         pygame.display.update()
 
+def win():
+
+    pygame.display.set_caption("You Win!")
+    while True:
+        SCREEN.blit(BG, (0, 0))
+        pygame.display.set_caption("Main Menu")
         
+        MENU_MOUSE_POS = pygame.mouse.get_pos()
+
+        MENU_TEXT = pygame.font.Font("freesansbold.ttf", 40)
+        MENU_TEXT = MENU_TEXT.render("You Saved Christmas!", True, "white")
+        MENU_TEXT_RECT = MENU_TEXT.get_rect()
+        MENU_TEXT_RECT.center = (width/2, 100)
+        
+        SCREEN.blit(MENU_TEXT, MENU_TEXT_RECT)
+
+        pygame.display.update()
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()        
 
 def shop():
     
@@ -139,7 +160,8 @@ def shop():
     while True:
         pygame.draw.rect(SCREEN, (150, 0, 20), (175, 70, 950, 550))
         SCREEN.blit(shopBorder, (0, 0))
-
+        game.run()
+        
 
         ELF_TEXT = pygame.font.Font("freesansbold.ttf", 40)
         ELF_TEXT = ELF_TEXT.render(f"Elves: {str(game.get_elves())}", True, "white")
@@ -209,7 +231,7 @@ def shop():
         SCREEN.blit(BUY_FACTORY_TEXT, BUY_FACTORY_TEXT_RECT)
 
         PRESENTS_TEXT = pygame.font.Font("freesansbold.ttf", 40)
-        PRESENTS_TEXT = PRESENTS_TEXT.render(f"Presents: {str(game.get_presents())}", True, "white")
+        PRESENTS_TEXT = PRESENTS_TEXT.render(f"Presents: {str(int(game.get_presents()))}", True, "white")
         PRESENTS_TEXT_RECT = PRESENTS_TEXT.get_rect()
         PRESENTS_TEXT_RECT.center = (800, 500)
         SCREEN.blit(PRESENTS_TEXT, PRESENTS_TEXT_RECT)
@@ -276,6 +298,11 @@ def shop():
                     x = game.get_presents()
                     if x >= 1000000:
                         game.buy_factory()
+                if BUY_SAVE_CHRISTMAS_TEXT_RECT.collidepoint(pygame.mouse.get_pos()):
+                    x = game.get_presents()
+                    if x >= 1000000000:
+                        game.save_christmas()
+                        win()
                     else:
                         SCREEN.blit(NOT_ENOUGH_TEXT, (500,850))
         pygame.display.update()
