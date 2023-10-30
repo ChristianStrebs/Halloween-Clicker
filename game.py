@@ -47,6 +47,8 @@ class Game:
             self.presents -= 10000 * (self.sleighs/2 + 1)
             self.sleighs += 1
 
+            
+
     def buy_workshop(self):
         if self.presents >= 100000 * (self.workshops/2 + 1):
             self.presents -= 100000 * (self.workshops/2 + 1)

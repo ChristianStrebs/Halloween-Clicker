@@ -162,7 +162,7 @@ def shop():
         SCREEN.blit(shopBorder, (0, 0))
         game.run()
         
-
+        #Adding all of the text to the screen
         ELF_TEXT = pygame.font.Font("freesansbold.ttf", 40)
         ELF_TEXT = ELF_TEXT.render(f"Elves: {str(game.get_elves())}", True, "white")
         ELF_TEXT_RECT = ELF_TEXT.get_rect()
@@ -307,7 +307,7 @@ def shop():
         NOT_ENOUGH_TEXT_RECT.center = (600, 600)
 
 
-
+        #Checking if player clicks on buttons and checking if they have enough presents to purchase the items
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -320,7 +320,7 @@ def shop():
                     if x >= 10:
                         game.buy_elf()
                     else:
-                        SCREEN.blit(NOT_ENOUGH_TEXT, (500,850))
+                        SCREEN.blit(NOT_ENOUGH_TEXT, NOT_ENOUGH_TEXT_RECT)
                         
                 if BUT_SANTA_TEXT_RECT.collidepoint(pygame.mouse.get_pos()):
                     x = game.get_presents()
