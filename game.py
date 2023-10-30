@@ -9,6 +9,7 @@ class Game:
         self.sleighs = 0
         self.workshops = 0
         self.factories = 0
+        self.clickUpgrades = 0
 
     def run(self):
         
@@ -20,6 +21,10 @@ class Game:
         self.presents += self.factories * 100
         
 
+    def buy_click_upgrade(self):
+        if self.presents >= 10 * (self.clickUpgrades/2 + 1):
+            self.presents -= 10 * (self.clickUpgrades/2 + 1)
+            self.clickUpgrades += 1
 
 
     def buy_elf(self):
@@ -77,6 +82,9 @@ class Game:
     def get_workshops(self):
         return self.workshops
     
+    def get_clickUpgrades(self):
+        return self.clickUpgrades
+
     def get_factories(self):
         return self.factories
     
@@ -92,6 +100,7 @@ class Game:
         self.workshops = workshops
         self.factories = factories
 
+
     def clicked_tree(self):
-        self.presents += 1
+        self.presents += ((self.get_clickUpgrades()*5) + 1)
         
