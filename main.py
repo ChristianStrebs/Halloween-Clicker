@@ -320,7 +320,7 @@ def shop():
                     if x >= 10:
                         game.buy_elf()
                     else:
-                        SCREEN.blit(NOT_ENOUGH_TEXT, NOT_ENOUGH_TEXT_RECT)
+                        SCREEN.blit(NOT_ENOUGH_TEXT, (500,850))
                         
                 if BUT_SANTA_TEXT_RECT.collidepoint(pygame.mouse.get_pos()):
                     x = game.get_presents()
