@@ -9,6 +9,7 @@ class Game:
         self.sleighs = 0
         self.workshops = 0
         self.factories = 0
+        self.labs = 0
         self.clickUpgrades = 0
 
     def run(self):
@@ -19,11 +20,12 @@ class Game:
         self.presents += self.sleighs * 5
         self.presents += self.workshops * 25
         self.presents += self.factories * 100
+        self.presents += self.labs * 500
         
 
     def buy_click_upgrade(self):
-        if self.presents >= 10 * (self.clickUpgrades/2 + 1):
-            self.presents -= 10 * (self.clickUpgrades/2 + 1)
+        if self.presents >= 100 * (self.clickUpgrades/2 + 1):
+            self.presents -= 100 * (self.clickUpgrades/2 + 1)
             self.clickUpgrades += 1
 
 
@@ -59,6 +61,11 @@ class Game:
             self.presents -= 1000000 * (self.factories/2 + 1)
             self.factories += 1
     
+    def buy_lab(self):
+        if self.presents >= 10000000 * (self.labs/2 + 1):
+            self.presents -= 10000000 * (self.labs/2 + 1)
+            self.labs += 1
+    
     def save_christmas(self):
         if self.presents >= 10000000:
             self.presents -= 10000000
@@ -89,11 +96,14 @@ class Game:
 
     def get_factories(self):
         return self.factories
+
+    def get_labs(self):
+        return self.labs
     
     def get_all(self):
         return self.presents, self.elves, self.santas, self.reindeers, self.sleighs, self.workshops, self.factories
     
-    def set_all(self, presents, elves, santas, reindeers, sleighs, workshops, factories):
+    def set_all(self, presents, elves, santas, reindeers, sleighs, workshops, factories, labs):
         self.presents = presents
         self.elves = elves
         self.santas = santas
@@ -101,8 +111,9 @@ class Game:
         self.sleighs = sleighs
         self.workshops = workshops
         self.factories = factories
+        self.labs = labs
 
 
     def clicked_tree(self):
-        self.presents += ((self.get_clickUpgrades()*5) + 1)
+        self.presents += ((self.get_clickUpgrades()**3) + 1)
         
